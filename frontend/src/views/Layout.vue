@@ -2,7 +2,7 @@
   <div class="app-shell">
     <aside class="sidebar">
       <div class="sidebar-brand">
-        <span class="brand-icon">📊</span>
+        <div class="brand-icon">S</div>
         <div>
           <div class="brand-name">成绩分析系统</div>
           <div class="brand-ver">v2.0</div>
@@ -49,11 +49,11 @@ const router = useRouter()
 const auth = useAuthStore()
 
 const navItems = [
-  { path: '/dashboard',  icon: '📈', label: '数据概览' },
-  { path: '/students',   icon: '👥', label: '学生管理' },
-  { path: '/prediction', icon: '🔮', label: '成绩预测' },
-  { path: '/history',    icon: '📋', label: '预测历史' },
-  { path: '/models',     icon: '🧪', label: '模型对比' },
+  { path: '/dashboard',  icon: '▦', label: '数据概览' },
+  { path: '/students',   icon: '≡', label: '学生管理' },
+  { path: '/prediction', icon: '◎', label: '成绩预测' },
+  { path: '/history',    icon: '⊟', label: '预测历史' },
+  { path: '/models',     icon: '⊞', label: '模型对比' },
 ]
 
 const currentLabel = computed(() => navItems.find(n => n.path === route.path)?.label ?? '')
@@ -83,7 +83,19 @@ function handleLogout() {
   padding: 20px 16px;
   border-bottom: 1px solid #f0f0f0;
 }
-.brand-icon { font-size: 24px; }
+.brand-icon {
+  width: 32px;
+  height: 32px;
+  background: #409eff;
+  color: #fff;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
 .brand-name { font-size: 14px; font-weight: 700; color: #303133; }
 .brand-ver { font-size: 11px; color: #909399; }
 

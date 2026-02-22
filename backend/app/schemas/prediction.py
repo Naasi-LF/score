@@ -18,6 +18,7 @@ class PredictResult(BaseModel):
 class PredictionRecord(BaseModel):
     id: int
     student_id: Optional[int]
+    student_no: Optional[str] = None
     task: str
     model_name: str
     result: float

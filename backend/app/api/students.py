@@ -60,6 +60,8 @@ async def import_students(
         raise HTTPException(status_code=400, detail=f"Missing columns: {missing}")
 
     df.columns = df.columns.str.lower()
-    records = df[list(required)].to_dict(orient="records")
+    optional = {"student_no"}
+    cols = list(required | (optional & set(df.columns)))
+    records = df[cols].to_dict(orient="records")
     count = bulk_create_students(db, records)
     return {"imported": count}

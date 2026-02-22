@@ -5,6 +5,7 @@ import io
 from app.database import get_db
 from app.models.user import User
 from app.models.prediction import Prediction
+from app.models.student import Student
 from app.schemas.prediction import PredictRequest, PredictResult, PredictionRecord
 from app.services.auth_service import get_current_user
 from app.services import ml_service
@@ -83,7 +84,15 @@ def prediction_history(
     db: Session = Depends(get_db),
     _: User = Depends(get_current_user),
 ):
-    q = db.query(Prediction)
+    q = db.query(Prediction).outerjoin(Student, Prediction.student_id == Student.id)
     if task:
         q = q.filter(Prediction.task == task)
-    return q.order_by(Prediction.created_at.desc()).offset(skip).limit(limit).all()
+    rows = q.order_by(Prediction.created_at.desc()).offset(skip).limit(limit).all()
+    result = []
+    for p in rows:
+        rec = PredictionRecord.model_validate(p)
+        if p.student_id:
+            s = db.get(Student, p.student_id)
+            rec.student_no = s.student_no if s else None
+        result.append(rec)
+    return result

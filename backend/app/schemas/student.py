@@ -3,6 +3,7 @@ from datetime import datetime
 from typing import Optional
 
 class StudentBase(BaseModel):
+    student_no: Optional[str] = None
     name: str
     age: int
     sex: str

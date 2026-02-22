@@ -23,7 +23,7 @@
             <th>模型</th>
             <th>预测结果</th>
             <th>概率</th>
-            <th>学生ID</th>
+            <th>学号</th>
             <th>时间</th>
           </tr>
         </thead>
@@ -43,7 +43,7 @@
               </span>
             </td>
             <td class="mono">{{ r.probability != null ? (r.probability * 100).toFixed(1) + '%' : '—' }}</td>
-            <td class="mono">{{ r.student_id ?? '—' }}</td>
+            <td class="mono">{{ r.student_no ?? '—' }}</td>
             <td class="mono time-col">{{ new Date(r.created_at).toLocaleString('zh-CN') }}</td>
           </tr>
           <tr v-if="!records.length && !loading">

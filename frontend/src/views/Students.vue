@@ -13,13 +13,13 @@
       <table class="data-table">
         <thead>
           <tr>
-            <th>ID</th><th>姓名</th><th>年龄</th><th>性别</th>
+            <th>学号</th><th>姓名</th><th>年龄</th><th>性别</th>
             <th>G1</th><th>G2</th><th>学习时长</th><th>不及格</th><th>缺勤</th><th>操作</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="s in students" :key="s.id">
-            <td class="mono">{{ s.id }}</td>
+            <td class="mono">{{ s.student_no ?? '—' }}</td>
             <td>{{ s.name }}</td>
             <td class="mono">{{ s.age }}</td>
             <td><span class="badge" :class="s.sex === 'M' ? 'badge-blue' : 'badge-pink'">{{ s.sex === 'M' ? '男' : '女' }}</span></td>
@@ -52,6 +52,7 @@
         </div>
         <div class="modal-body">
           <div class="form-grid">
+            <div class="field"><label>学号</label><input v-model="form.student_no" class="finput" placeholder="如 22030303" /></div>
             <div class="field"><label>姓名</label><input v-model="form.name" class="finput" /></div>
             <div class="field"><label>年龄</label><input v-model.number="form.age" type="number" min="10" max="25" class="finput" /></div>
             <div class="field">
@@ -109,7 +110,7 @@ const loading = ref(false)
 const showAdd = ref(false)
 
 const defaultForm = () => ({
-  name: '', age: 17, sex: 'M', address: 'U', famsize: 'GT3',
+  student_no: '', name: '', age: 17, sex: 'M', address: 'U', famsize: 'GT3',
   medu: 2, fedu: 2, studytime: 2, failures: 0, absences: 0,
   activities: 'no', g1: 10, g2: 10,
 })

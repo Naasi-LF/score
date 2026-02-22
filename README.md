@@ -24,7 +24,7 @@ docker compose exec backend python ml/train_all.py
 
 | Service | URL |
 |---------|-----|
-| Frontend | http://localhost:3000 |
+| Frontend | http://localhost:80 |
 | Backend API docs | http://localhost:8000/docs |
 
 Default credentials: `admin` / `admin123`
